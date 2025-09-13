@@ -1,0 +1,81 @@
+/* ADD_BOOK.CSS — Option 3: Clean College Library Theme */
+
+body {
+    background-color: #f4f6f9;
+    background-image: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
+    background-repeat: repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 2rem 2.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+    color: #0d6efd;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+    text-align: center;
+}
+
+/* Form Styles */
+form label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #495057;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    transition: border-color 0.2s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #0d6efd;
+    outline: none;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}

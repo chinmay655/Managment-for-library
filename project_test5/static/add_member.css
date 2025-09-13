@@ -1,0 +1,50 @@
+/* ADD_MEMBER.CSS — Option 3 Theme */
+
+body {
+    background-color: #f4f6f9;
+    background-image: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
+    background-repeat: repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+label {
+    font-weight: 500;
+    color: #495057;
+}
+
+input,
+select {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #0d6efd;
+    outline: none;
+}
+
+.btn {
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}

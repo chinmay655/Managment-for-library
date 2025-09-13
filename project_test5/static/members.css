@@ -1,0 +1,54 @@
+body {
+    background-color: #f4f6f9;
+    background-image: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png");
+    background-repeat: repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+h1, h2 {
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 1.5rem;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+}
+
+.table thead {
+    background-color: #e9ecef;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}

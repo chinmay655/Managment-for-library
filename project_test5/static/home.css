@@ -1,0 +1,49 @@
+/* Full background */
+body {
+    background: url("{{ url_for('static', filename='lib.jpg') }}") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+/* Overlay to center content */
+.overlay {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Transparent glass card */
+.card-container {
+    background: rgba(255, 255, 255, 0.15);  /* ✅ almost transparent */
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 35px 40px;
+    max-width: 700px;
+    width: 90%;
+    backdrop-filter: blur(12px); /* ✅ frosted glass effect */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* thin glass border */
+}
+
+/* Make text dark enough to be readable */
+.card-container h1,
+.card-container h4,
+.card-container li,
+.card-container strong {
+    color: #fff; /* white text for contrast */
+}
+/* Make all text inside the white card dark */
+.card-container h1,
+.card-container h4,
+.card-container p,
+.card-container li,
+.card-container strong,
+.card-container .btn,
+.card-container .list-group-item {
+    color: #000 !important;  /* black text */
+}
+/* Admin Panel button text in white */
+.card-container .btn-dark {
+    color: #fff !important;
+}

@@ -1,0 +1,153 @@
+/* Admin Panel Custom Styles */
+body {
+    background: url("../static/lib.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Overlay for readability */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: -1;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+}
+
+/* Frosted glass cards */
+.card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    border: none;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    color: #fff;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+/* Card headers & footers */
+.card-header {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 15px 15px 0 0;
+}
+
+.card-footer {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 0 0 15px 15px;
+    color: #eee9e9;
+}
+
+/* Tables */
+.table {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    color: #fff;
+}
+
+.table th {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.table td {
+    color: #eee;
+}
+
+.table-hover tbody tr:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Buttons */
+.btn {
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger, .btn-secondary {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Badge */
+.badge {
+    font-size: 0.95em;
+    padding: 0.5em 0.7em;
+    border-radius: 6px;
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: #fffbfb;
+}
+
+/* Navbar tweaks */
+.navbar {
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.navbar .nav-link, .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar .dropdown-menu {
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 16px;
+    }
+    .container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+/* Table row highlight */
+tr.selected {
+    background-color: rgba(100, 181, 246, 0.4) !important;
+}
+/* Make text inside card content black */
+.card, 
+.card-body, 
+.card-header, 
+.card-footer {
+    color: #000 !important;
+}
+
+/* Keep table header white but table content black */
+.table th {
+    color: #fff !important;   /* Keep white headings */
+}
+.table td {
+    color: #000 !important;   /* Make row text black */
+}

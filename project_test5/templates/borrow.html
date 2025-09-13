@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Borrow Book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        /* Background */
+        body {
+            background: url("{{ url_for('static', filename='lib.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* Dark overlay */
+        .overlay {
+            background: rgba(0, 0, 0, 0.65);
+            min-height: 100vh;
+            padding: 40px 15px;
+        }
+
+        h2 {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Frosted glass form */
+        .glass-form {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        label {
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .form-control, .form-select {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: rgba(255, 255, 255, 0.25);
+            color: #fff;
+            border-color: #66afe9;
+            box-shadow: none;
+        }
+
+        option {
+            color: #000; /* dropdown options stay readable */
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="overlay">
+        <div class="container">
+            <h2 class="mb-4 text-center">📕 Borrow Book</h2>
+            <form method="post" class="glass-form mx-auto col-md-6">
+                <div class="mb-3">
+                    <label for="member_id" class="form-label">Select Member</label>
+                    <select class="form-select" id="member_id" name="member_id" required>
+                        {% for member in members %}
+                        <option value="{{ member.member_id }}">{{ member.name }} ({{ member.member_id }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="book_id" class="form-label">Select Book</label>
+                    <select class="form-select" id="book_id" name="book_id" required>
+                        {% for book in books %}
+                        <option value="{{ book.book_id }}">{{ book.title }} ({{ book.book_id }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary px-4">📚 Borrow</button>
+                    <a href="{{ url_for('books') }}" class="btn btn-secondary px-4">🔙 Back to Books</a>
+                    <a href="{{ url_for('home') }}" class="btn btn-secondary px-4">🏠 Home</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

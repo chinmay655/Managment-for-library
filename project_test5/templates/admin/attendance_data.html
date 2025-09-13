@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Data - Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Attendance Data Management</h1>
+        <div>
+            <a href="{{ url_for('admin_export_data', data_type='attendance') }}" class="btn btn-success">
+                <i class="fas fa-download me-1"></i>Export CSV
+            </a>
+            <a href="{{ url_for('admin_data_management') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- Today's Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Visitors Today</h5>
+                    <h2 class="card-text">{{ daily_stats.total_visitors }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Members</h5>
+                    <h2 class="card-text">{{ daily_stats.members }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Visitors</h5>
+                    <h2 class="card-text">{{ daily_stats.visitors }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">Staff</h5>
+                    <h2 class="card-text">{{ daily_stats.staff }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Visitors -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Currently Present Visitors</h5>
+                </div>
+                <div class="card-body">
+                    {% if current_visitors %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Visitor ID</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Entry Time</th>
+                                    <th>Duration</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for visitor in current_visitors %}
+                                <tr>
+                                    <td><strong>{{ visitor.visitor_id }}</strong></td>
+                                    <td>{{ visitor.name }}</td>
+                                    <td>
+                                        {% if visitor.visitor_type.value == 'member' %}
+                                            <span class="badge bg-success">Member</span>
+                                        {% elif visitor.visitor_type.value == 'staff' %}
+                                            <span class="badge bg-warning">Staff</span>
+                                        {% else %}
+                                            <span class="badge bg-info">Visitor</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ visitor.entry_time.strftime('%H:%M:%S') }}</td>
+                                    <td>
+                                        {% if visitor.get_duration() %}
+                                            {{ visitor.get_duration() }} min
+                                        {% else %}
+                                            Active
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ visitor.purpose or '-' }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted">No visitors currently present.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance History -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Attendance History (Last 7 Days)</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Total Visitors</th>
+                                    <th>Members</th>
+                                    <th>Visitors</th>
+                                    <th>Staff</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for day in attendance_history %}
+                                <tr>
+                                    <td><strong>{{ day.date.strftime('%Y-%m-%d') }}</strong></td>
+                                    <td>{{ day.stats.total_visitors }}</td>
+                                    <td>{{ day.stats.members }}</td>
+                                    <td>{{ day.stats.visitors }}</td>
+                                    <td>{{ day.stats.staff }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

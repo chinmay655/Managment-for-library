@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Data Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Admin Data Management Dashboard</h1>
+    
+    <div class="row">
+        <!-- Users Data Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-users me-2"></i>Users Data
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Manage and view all user accounts including students, staff, and administrators.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-user-graduate me-2"></i>Student accounts</li>
+                        <li><i class="fas fa-user-tie me-2"></i>Staff accounts</li>
+                        <li><i class="fas fa-user-shield me-2"></i>Admin accounts</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('admin_users_data') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-eye me-1"></i>View Users
+                    </a>
+                    <a href="{{ url_for('admin_export_data', data_type='users') }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-download me-1"></i>Export
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Books Data Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-book me-2"></i>Books Data
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Manage and view all library books, their availability, and borrowing status.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-book-open me-2"></i>Book inventory</li>
+                        <li><i class="fas fa-clipboard-list me-2"></i>Borrowing status</li>
+                        <li><i class="fas fa-tags me-2"></i>Categories</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('admin_books_data') }}" class="btn btn-success btn-sm">
+                        <i class="fas fa-eye me-1"></i>View Books
+                    </a>
+                    <a href="{{ url_for('admin_export_data', data_type='books') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-download me-1"></i>Export
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Members Data Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-id-card me-2"></i>Members Data
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Manage and view all library members, their borrowing history, and membership details.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-user-friends me-2"></i>Member profiles</li>
+                        <li><i class="fas fa-history me-2"></i>Borrowing history</li>
+                        <li><i class="fas fa-crown me-2"></i>Membership types</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('admin_members_data') }}" class="btn btn-info btn-sm">
+                        <i class="fas fa-eye me-1"></i>View Members
+                    </a>
+                    <a href="{{ url_for('admin_export_data', data_type='members') }}" class="btn btn-outline-info btn-sm">
+                        <i class="fas fa-download me-1"></i>Export
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attendance Data Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-clock me-2"></i>Attendance Data
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Track and view attendance records, visitor statistics, and daily reports.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-calendar-check me-2"></i>Daily attendance</li>
+                        <li><i class="fas fa-chart-line me-2"></i>Visitor statistics</li>
+                        <li><i class="fas fa-users me-2"></i>Current visitors</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('admin_attendance_data') }}" class="btn btn-warning btn-sm">
+                        <i class="fas fa-eye me-1"></i>View Attendance
+                    </a>
+                    <a href="{{ url_for('admin_export_data', data_type='attendance') }}" class="btn btn-outline-warning btn-sm">
+                        <i class="fas fa-download me-1"></i>Export
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Data Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-exchange-alt me-2"></i>Transactions Data
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">View transaction history, borrowing/returning activities, and system logs.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-history me-2"></i>Transaction history</li>
+                        <li><i class="fas fa-list-alt me-2"></i>Activity logs</li>
+                        <li><i class="fas fa-chart-bar me-2"></i>Usage statistics</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('admin_transactions_data') }}" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-eye me-1"></i>View Transactions
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overdue Data Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Overdue Data
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Monitor overdue books and manage late returns.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-calendar-times me-2"></i>Overdue books</li>
+                        <li><i class="fas fa-user-clock me-2"></i>Late returns</li>
+                        <li><i class="fas fa-bell me-2"></i>Notifications</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('admin_overdue_data') }}" class="btn btn-danger btn-sm">
+                        <i class="fas fa-eye me-1"></i>View Overdue
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-search me-2"></i>Advanced Search
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('admin_search_data') }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="search_query" class="form-label">Search Query</label>
+                                    <input type="text" class="form-control" id="search_query" name="search_query" 
+                                           placeholder="Enter search term...">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="search_type" class="form-label">Search Type</label>
+                                    <select class="form-select" id="search_type" name="search_type">
+                                        <option value="all">All Data</option>
+                                        <option value="users">Users Only</option>
+                                        <option value="books">Books Only</option>
+                                        <option value="members">Members Only</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">&nbsp;</label>
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="fas fa-search me-1"></i>Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

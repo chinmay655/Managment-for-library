@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Background */
+        body {
+            background: url("{{ url_for('static', filename='lib.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* Overlay */
+        .overlay {
+            background: rgba(0, 0, 0, 0.65);
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        h2, h4 {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Frosted glass card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* List group transparent */
+        .list-group-item {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+        }
+
+        /* Table glass effect */
+        .table-container {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        table {
+            color: #fff;
+        }
+
+        thead {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        td, th {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="overlay">
+        <div class="container">
+            <h2 class="fw-bold mb-4"><i class="fas fa-clipboard-list me-2"></i>Library Attendance</h2>
+
+            <!-- Action Buttons -->
+            <div class="d-flex flex-wrap gap-3 mb-4">
+                <a href="{{ url_for('check_in') }}" class="btn btn-success px-4">
+                    <i class="fas fa-sign-in-alt me-2"></i>Check In
+                </a>
+                <a href="{{ url_for('home') }}" class="btn btn-secondary px-4">
+                    <i class="fas fa-home me-2"></i>Home
+                </a>
+            </div>
+
+            <!-- Stats Card -->
+            <div class="glass-card">
+                <h4 class="mb-3"><i class="fas fa-chart-bar me-2"></i>Today's Stats</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> Total Visitors: <strong>{{ stats.total_visitors }}</strong></li>
+                    <li class="list-group-item"> Members: <strong>{{ stats.members }}</strong></li>
+                    <li class="list-group-item"> Visitors: <strong>{{ stats.visitors }}</strong></li>
+                    <li class="list-group-item"> Staff: <strong>{{ stats.staff }}</strong></li>
+                </ul>
+            </div>
+
+            <!-- Visitors Table -->
+            <div class="table-container">
+                <h4 class="mb-3"><i class="fas fa-user-clock me-2"></i>Current Visitors</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Entry Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for visitor in visitors %}
+                            <tr>
+                                <td>{{ visitor.visitor_id }}</td>
+                                <td>{{ visitor.name }}</td>
+                                <td>{{ visitor.visitor_type.value }}</td>
+                                <td>{{ visitor.entry_time.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>
+                                    <form method="post" action="{{ url_for('check_out') }}">
+                                        <input type="hidden" name="visitor_id" value="{{ visitor.visitor_id }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-door-open me-1"></i>Check Out
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
